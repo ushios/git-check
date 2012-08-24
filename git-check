@@ -1,0 +1,33 @@
+#!/bin/sh
+
+
+if [ $# -ne 1 ]; then
+	echo "arg1: path"
+	exit
+fi
+
+if [ -f $1 ]; then
+	echo "$1 is file."
+	exit
+fi
+
+if [ ! -d $1 ]; then
+	echo "$1 must be directory."
+	exit
+fi
+
+
+GIT_LIST=`find $1 -name .git`
+
+for GIT_PATH in $GIT_LIST
+do
+	CUR_PATH=${GIT_PATH%.git}
+	GIT_DIFF=`git --git-dir=${GIT_PATH} --work-tree=${CUR_PATH} diff`
+
+	if [ "" = "$GIT_DIFF" ]; then
+		echo "OK $CUR_PATH"
+	else
+		echo "\033[31mNG $CUR_PATH\033[m"
+	fi
+done
+
