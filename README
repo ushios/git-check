@@ -3,3 +3,6 @@ Lisence: MIT
 Usage:
 > git-check /home/user
 
+Description:
+check git repositories reflexively
+
