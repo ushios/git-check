@@ -4,5 +4,5 @@ Usage:
 > git-check /home/user
 
 Description:
-check git repositories reflexively
+check git repositories recursively
 
