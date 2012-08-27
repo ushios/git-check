@@ -22,9 +22,14 @@ GIT_LIST=`find $1 -name .git`
 for GIT_PATH in $GIT_LIST
 do
 	CUR_PATH=${GIT_PATH%.git}
-	GIT_DIFF=`git --git-dir=${GIT_PATH} --work-tree=${CUR_PATH} diff`
+	GIT_OPTIONS="--git-dir=${GIT_PATH} --work-tree=${CUR_PATH}"
 
-	if [ "" = "$GIT_DIFF" ]; then
+	GIT_DIFF=`git ${GIT_OPTIONS} diff`
+	GIT_STATUS=`git ${GIT_OPTIONS} status`
+
+	GIT_STATUS_UNTRACKED=`echo ${GIT_STATUS} | grep '# On branch master' | grep '# Untracked files:'`
+
+	if [ "" = "$GIT_DIFF" -a "" = "$GIT_STATUS_UNTRACKED" ]; then
 		echo "OK $CUR_PATH"
 	else
 		echo "\033[31mNG $CUR_PATH\033[m"
