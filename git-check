@@ -28,7 +28,7 @@ do
 	GIT_STATUS=`git ${GIT_OPTIONS} status`
 
 	GIT_STATUS_UNTRACKED=`echo ${GIT_STATUS} | grep '# On branch master' | grep '# Untracked files:'`
-	GIT_STATUS_PUSHED=`echo ${GIT_STATUS} | grep 'by [0-9] commit.'`
+	GIT_STATUS_PUSHED=`echo ${GIT_STATUS} | grep 'by [0-9]* commit.'`
 	GIT_STATUS_ADDED=`echo ${GIT_STATUS} | grep '# Changes to be committed:'`
 
 	if [ "" = "$GIT_DIFF" -a "" = "$GIT_STATUS_UNTRACKED" -a "" = "$GIT_STATUS_PUSHED" -a "" = "$GIT_STATUS_ADDED" ]; then
