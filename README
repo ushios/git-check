@@ -8,6 +8,5 @@ check git repositories recursively
 
 
 plan:
-1. show NG when added but not commited
-2. change NG to status that are 'untracked files', 'not commited', 'not pushed' and 'not added'
+1. change NG to status that are 'untracked files', 'not commited', 'not pushed' and 'not added'
 
